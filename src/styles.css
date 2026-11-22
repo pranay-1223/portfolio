@@ -411,6 +411,11 @@ main {
     width: auto !important;
   }
 
+  .manifesto-text {
+    font-size: clamp(14px, 3.6vw, 17px) !important;
+    line-height: 1.45 !important;
+  }
+
   .journey-front {
     left: 6vw !important;
     right: 6vw !important;

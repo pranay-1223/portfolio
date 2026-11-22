@@ -9,8 +9,8 @@ export default function Hero() {
   const underlineRef = useRef<HTMLSpanElement>(null);
   const introPlayed = useRef(false);
 
-  const magBtn1 = useMagnetic(0.35);
-  const magBtn2 = useMagnetic(0.35);
+  const magBtn1 = useMagnetic<HTMLAnchorElement>(0.35);
+  const magBtn2 = useMagnetic<HTMLAnchorElement>(0.35);
 
   useEffect(() => {
     if (sectionRef.current) registerSection('hero', sectionRef.current);

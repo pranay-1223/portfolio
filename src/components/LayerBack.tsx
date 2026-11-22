@@ -116,9 +116,9 @@ export default function LayerBack() {
         const t = i / (DATA.skills.length - 1);
         const inclination = Math.acos(1 - 2 * t);
         const azimuth = goldenAngle * i;
-        let x = R * Math.sin(inclination) * Math.cos(azimuth);
-        let y = R * Math.cos(inclination) * 0.78;
-        let z = R * Math.sin(inclination) * Math.sin(azimuth);
+        const x = R * Math.sin(inclination) * Math.cos(azimuth);
+        const y = R * Math.cos(inclination) * 0.78;
+        const z = R * Math.sin(inclination) * Math.sin(azimuth);
 
         // Apply tilt
         const ny = y * cosT - z * sinT;

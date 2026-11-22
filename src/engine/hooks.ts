@@ -42,8 +42,8 @@ export function useMouse() {
 }
 
 /** Magnetic button effect using gsap.quickTo with elastic easing */
-export function useMagnetic(strength = 0.35) {
-  const ref = useRef<HTMLAnchorElement | HTMLButtonElement | any>(null);
+export function useMagnetic<T extends HTMLElement = HTMLElement>(strength = 0.35) {
+  const ref = useRef<T>(null);
   const xTo = useRef<gsap.QuickToFunc | null>(null);
   const yTo = useRef<gsap.QuickToFunc | null>(null);
 

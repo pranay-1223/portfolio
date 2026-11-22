@@ -4,6 +4,32 @@ import { registerSection } from '../engine/director';
 import { useDirector } from '../engine/hooks';
 
 /* ─── Project visual mocks ─── */
+function JobPortalMock() {
+  return (
+    <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 12, width: '84%', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ width: 38, height: 38, borderRadius: 10, background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: 'var(--red)', fontFamily: 'Anton', fontSize: 18 }}>
+          CC
+        </div>
+        <span style={{ fontSize: 11, fontFamily: 'JetBrains Mono', color: '#ffffff', background: 'rgba(255,255,255,0.22)', padding: '4px 10px', borderRadius: 999 }}>
+          Job Platform
+        </span>
+      </div>
+      <div style={{ background: 'rgba(255,255,255,0.18)', borderRadius: 14, padding: '14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ height: 10, width: '65%', background: '#ffffff', borderRadius: 4 }} />
+        <div style={{ height: 6, width: '45%', background: 'rgba(255,255,255,0.65)', borderRadius: 3 }} />
+        <div style={{ display: 'flex', gap: 6, marginTop: 4 }}>
+          <div style={{ height: 16, width: 50, background: 'rgba(255,255,255,0.25)', borderRadius: 4 }} />
+          <div style={{ height: 16, width: 42, background: 'rgba(255,255,255,0.25)', borderRadius: 4 }} />
+        </div>
+      </div>
+      <div style={{ background: '#ffffff', borderRadius: 10, padding: '9px 16px', alignSelf: 'flex-start', fontSize: 12, color: 'var(--red)', fontWeight: 700, fontFamily: 'JetBrains Mono' }}>
+        Discover & Apply →
+      </div>
+    </div>
+  );
+}
+
 function GaugeMock() {
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -41,6 +67,7 @@ function ChatMock() {
 }
 
 const visuals: Record<string, () => React.ReactNode> = {
+  portal: JobPortalMock,
   gauge: GaugeMock,
   heatmap: HeatmapMock,
   chat: ChatMock,
@@ -118,7 +145,7 @@ export default function Work() {
       ref={sectionRef}
       id="section-work"
       className="scene"
-      style={{ height: '460vh' }}
+      style={{ height: '560vh' }}
     >
       <div className="scene-sticky">
         <div ref={frontRef} style={{ position: 'absolute', inset: 0, zIndex: 3, opacity: 0 }}>
@@ -132,7 +159,7 @@ export default function Work() {
               className="font-anton"
               style={{ fontSize: 'clamp(24px, 2.5vw, 42px)', color: 'var(--ink)' }}
             >
-              01 / 03
+              01 / {String(DATA.projects.length).padStart(2, '0')}
             </span>
             <div style={{ width: 140, height: 3, background: 'var(--line)', borderRadius: 2, overflow: 'hidden' }}>
               <div
@@ -231,26 +258,28 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           ))}
         </div>
 
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener"
-          className="font-mono"
-          data-cursor="Open"
-          style={{
-            fontSize: 12,
-            color: 'var(--red)',
-            textDecoration: 'none',
-            letterSpacing: '0.04em',
-            marginTop: 8,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            fontWeight: 600,
-          }}
-        >
-          View on GitHub ↗
-        </a>
+        {project.github ? (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener"
+            className="font-mono"
+            data-cursor="Open"
+            style={{
+              fontSize: 12,
+              color: 'var(--red)',
+              textDecoration: 'none',
+              letterSpacing: '0.04em',
+              marginTop: 8,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              fontWeight: 600,
+            }}
+          >
+            View on GitHub ↗
+          </a>
+        ) : null}
       </div>
 
       {/* Right Column: Visual Mock */}

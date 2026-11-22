@@ -18,14 +18,28 @@ export const DATA = {
     'I believe great software starts with *empathy* — understanding the people who will use it. I thrive at the intersection of *design* and *engineering*, turning complex problems into clean, elegant solutions. From architecting scalable back-ends to polishing micro-interactions on the front-end, I bring a *relentless* attention to detail and a bias for shipping. Every project is a chance to learn something *new* — and I never stop learning.',
 
   stats: [
-    { label: 'CGPA', value: 7.0, decimals: 1, suffix: '' },
-    { label: 'PROBLEMS SOLVED', value: 150, decimals: 0, suffix: '+' },
-    { label: 'TOP RANK', value: 3, decimals: 0, suffix: '★' },
+    { label: 'CGPA', value: '7.18' },
+    { label: 'PROJECTS BUILT', value: '4' },
+    {
+      label: 'EXTRA-CURRICULAR ACTIVITIES',
+      value: '3',
+      items: ['Event Organisation', 'Team Management', 'Basketball'],
+    },
   ],
 
   projects: [
     {
       id: 1,
+      category: 'WEB APP',
+      name: 'CAREER CAFE',
+      description:
+        'A job application platform designed to help users discover career opportunities and submit applications, powered by Next.js, Supabase backend services, and Vercel hosting.',
+      chips: ['Next.js', 'Supabase', 'Vercel'],
+      github: '',
+      visual: 'portal',
+    },
+    {
+      id: 2,
       category: 'WEB APP',
       name: 'STUDENT PORTAL',
       description:
@@ -35,7 +49,7 @@ export const DATA = {
       visual: 'gauge', // animated gauge mock
     },
     {
-      id: 2,
+      id: 3,
       category: 'WEB APP',
       name: 'MEAL PLANNER',
       description:
@@ -45,7 +59,7 @@ export const DATA = {
       visual: 'heatmap', // heatmap grid mock
     },
     {
-      id: 3,
+      id: 4,
       category: 'AUTOMATION',
       name: 'PYTHON TOOLKIT',
       description:
@@ -97,7 +111,7 @@ export const DATA = {
   ],
 
   counters: [
-    { value: 150, suffix: '+', label: 'PROBLEMS', color: 'red' as const },
+    { value: 5, suffix: '', label: 'HACKATHONS', color: 'red' as const },
     { value: 3, suffix: '★', label: 'IIT-H RANK', color: 'black' as const },
     { value: 2, suffix: '+', label: 'INTERNSHIPS', color: 'black' as const },
     { value: 5, suffix: '+', label: 'PROJECTS', color: 'red' as const },

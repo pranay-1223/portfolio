@@ -1,15 +1,13 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { DATA } from '../data';
 import { registerSection } from '../engine/director';
 import { useDirector } from '../engine/hooks';
 import TiltCard from '../components/TiltCard';
-import Odometer from '../components/Odometer';
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const frontRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     if (sectionRef.current) registerSection('about', sectionRef.current);
@@ -20,7 +18,6 @@ export default function About() {
     const { vis, exit, p } = st;
     const alpha = vis * Math.max(0, 1 - exit * 2.4);
     frontRef.current.style.opacity = String(alpha);
-    setScrollProgress(p);
 
     // Word-by-word reveal
     if (wordsRef.current) {
@@ -72,10 +69,10 @@ export default function About() {
             ref={wordsRef}
             className="manifesto-text font-body"
             style={{
-              fontSize: 'clamp(26px, 2.6vw, 50px)',
-              lineHeight: 1.25,
+              fontSize: 'clamp(18px, 1.6vw, 28px)',
+              lineHeight: 1.45,
               fontWeight: 600,
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.02em',
             }}
           >
             {manifestoWords.map((word, i) => {
@@ -102,32 +99,83 @@ export default function About() {
 
           {/* Glass stat cards */}
           <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-            {DATA.stats.map((stat, i) => (
-              <TiltCard
-                key={i}
-                style={{ flex: '1 1 180px', padding: '24px 20px', minWidth: 150 }}
-              >
-                <span
-                  className="font-mono"
+            {DATA.stats.map((stat, i) => {
+              const hasItems = 'items' in stat && Array.isArray(stat.items);
+              return (
+                <TiltCard
+                  key={i}
                   style={{
-                    fontSize: 11,
-                    letterSpacing: '0.04em',
-                    color: 'var(--mute)',
-                    textTransform: 'uppercase',
+                    flex: '1 1 180px',
+                    padding: '24px 20px',
+                    minWidth: 150,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  {stat.label}
-                </span>
-                <div style={{ fontSize: 'clamp(36px, 4vw, 64px)', marginTop: 8 }}>
-                  <Odometer
-                    value={stat.value}
-                    decimals={stat.decimals}
-                    suffix={stat.suffix}
-                    progress={scrollProgress}
-                  />
-                </div>
-              </TiltCard>
-            ))}
+                  <span
+                    className="font-mono"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: '0.04em',
+                      color: 'var(--mute)',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {stat.label}
+                    {hasItems && (
+                      <span style={{ color: 'var(--red)', fontWeight: 700, marginLeft: 6 }}>
+                        ({stat.items.length})
+                      </span>
+                    )}
+                  </span>
+
+                  {hasItems ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 10 }}>
+                      {stat.items.map((item) => (
+                        <span
+                          key={item}
+                          className="font-body"
+                          style={{
+                            fontSize: 'clamp(12px, 0.95vw, 14px)',
+                            fontWeight: 600,
+                            color: 'var(--ink)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 6,
+                            lineHeight: 1.25,
+                          }}
+                        >
+                          <span
+                            style={{
+                              width: 5,
+                              height: 5,
+                              borderRadius: '50%',
+                              background: 'var(--red)',
+                              flexShrink: 0,
+                            }}
+                          />
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <div
+                      className="font-anton"
+                      style={{
+                        fontSize: 'clamp(36px, 4vw, 64px)',
+                        marginTop: 8,
+                        lineHeight: 1,
+                        color: 'var(--ink)',
+                      }}
+                    >
+                      {stat.value}
+                    </div>
+                  )}
+                </TiltCard>
+              );
+            })}
           </div>
         </div>
       </div>

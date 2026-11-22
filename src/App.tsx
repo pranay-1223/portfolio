@@ -20,7 +20,7 @@ export default function App() {
   const preloaderRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
-  const isMobile = useRef(typeof window !== 'undefined' && window.innerWidth < 820);
+  const [isMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 820);
 
   useEffect(() => {
     // Load frames
@@ -48,7 +48,7 @@ export default function App() {
 
   // Custom cursor (desktop only)
   useEffect(() => {
-    if (isMobile.current) return;
+    if (isMobile) return;
     const dot = cursorDotRef.current;
     const ring = cursorRingRef.current;
     if (!dot || !ring) return;
@@ -82,7 +82,7 @@ export default function App() {
     window.addEventListener('mousemove', onMove);
     animate();
     return () => window.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
@@ -129,7 +129,7 @@ export default function App() {
       <Chrome />
 
       {/* Custom cursor */}
-      {!isMobile.current && (
+      {!isMobile && (
         <>
           <div ref={cursorDotRef} className="cursor-dot" />
           <div ref={cursorRingRef} className="cursor-ring">

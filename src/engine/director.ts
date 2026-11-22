@@ -34,7 +34,7 @@ export function buildScenes(shots: { from: number; to: number }[]): void {
   SCENES = [
     { id: 'hero',    from: s1.from, to: s1.to,   x: 0.70, k: 1.0,  label: 'Hello',   height: '230vh' },
     { id: 'about',   from: s2.from, to: s2.to,   x: 0.27, k: 1.0,  label: 'About',   height: '280vh' },
-    { id: 'work',    from: s3.from, to: s3.to,   x: 0.77, k: 0.86, label: 'Work',    height: '460vh' },
+    { id: 'work',    from: s3.from, to: s3.to,   x: 0.77, k: 0.86, label: 'Work',    height: '560vh' },
     { id: 'journey', from: s4.from, to: s4_60,   x: 0.26, k: 1.0,  label: 'Journey', height: '240vh' },
     { id: 'skills',  from: s4_60,   to: s4_85,   x: 0.50, k: 0.98, label: 'Toolkit', height: '280vh' },
     { id: 'awards',  from: s4_85,   to: s4.to,   x: 0.75, k: 1.0,  label: 'Awards',  height: '320vh' },

@@ -99,9 +99,11 @@ export default function Awards() {
                     style={{ fontSize: 'clamp(36px, 4.2vw, 64px)', lineHeight: 1, display: 'block' }}
                   >
                     {c.value}
-                    <span style={{ fontSize: '0.8em', color: isRed ? '#ffffff' : 'var(--red)', marginLeft: 2 }}>
-                      {c.suffix}
-                    </span>
+                    {c.suffix ? (
+                      <span style={{ fontSize: '0.8em', color: isRed ? '#ffffff' : 'var(--red)', marginLeft: 2 }}>
+                        {c.suffix}
+                      </span>
+                    ) : null}
                   </span>
                   <span
                     className="font-mono"
