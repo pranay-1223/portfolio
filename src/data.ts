@@ -35,6 +35,8 @@ export const DATA = {
       description:
         'A job application platform designed to help users discover career opportunities and submit applications, powered by Next.js, Supabase backend services, and Vercel hosting.',
       chips: ['Next.js', 'Supabase', 'Vercel'],
+      link: 'https://share.google/eDVd7VkrVLgKmQEQ0',
+      linkLabel: 'View Project',
       github: '',
       visual: 'portal',
     },
@@ -45,6 +47,8 @@ export const DATA = {
       description:
         'A comprehensive portal for managing student profiles, courses, schedules, and authentication.',
       chips: ['React', 'Firebase', 'Bootstrap', 'TypeScript'],
+      link: '',
+      linkLabel: '',
       github: 'https://github.com/pranay-1223',
       visual: 'gauge', // animated gauge mock
     },
@@ -55,6 +59,8 @@ export const DATA = {
       description:
         'An intuitive platform that plans meals based on dietary preferences with live recipe suggestions.',
       chips: ['React', 'REST APIs', 'Bootstrap', 'Node.js'],
+      link: '',
+      linkLabel: '',
       github: 'https://github.com/pranay-1223',
       visual: 'heatmap', // heatmap grid mock
     },
@@ -65,6 +71,8 @@ export const DATA = {
       description:
         'Data-processing and automation scripts built during internships at CodTech and Vault of Codes.',
       chips: ['Python', 'Pandas', 'REST APIs', 'Automation'],
+      link: '',
+      linkLabel: '',
       github: 'https://github.com/pranay-1223',
       visual: 'chat', // chat bubbles mock
     },

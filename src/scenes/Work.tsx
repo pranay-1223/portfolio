@@ -117,17 +117,20 @@ export default function Work() {
         card.style.transform = `translate3d(0, ${d * 3.2}vh, ${d * 300}px)`;
         card.style.opacity = String(Math.max(0, 1 + d * 0.8));
         card.style.zIndex = String(n - i);
+        card.style.pointerEvents = 'none';
       } else if (d > 0.8) {
         // Leaving cards: z = d * 900, y = -12d vh, rotateX = 28d, opacity = 1 - 1.8d
         const ld = d - 0.8;
         card.style.transform = `translate3d(0, ${-12 * ld}vh, ${ld * 900}px) rotateX(${28 * ld}deg)`;
         card.style.opacity = String(Math.max(0, 1 - 1.8 * ld));
         card.style.zIndex = String(n + i);
+        card.style.pointerEvents = 'none';
       } else {
         // Active card dwell
         card.style.transform = 'translate3d(0, 0, 0) rotateX(0deg)';
         card.style.opacity = '1';
         card.style.zIndex = String(n + 10);
+        card.style.pointerEvents = 'auto';
       }
     });
 
@@ -258,11 +261,11 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           ))}
         </div>
 
-        {project.github ? (
+        {project.link ? (
           <a
-            href={project.github}
+            href={project.link}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="font-mono"
             data-cursor="Open"
             style={{
@@ -275,6 +278,33 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
               alignItems: 'center',
               gap: 4,
               fontWeight: 600,
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 10,
+            }}
+          >
+            {project.linkLabel || 'View Project'} ↗
+          </a>
+        ) : project.github ? (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono"
+            data-cursor="Open"
+            style={{
+              fontSize: 12,
+              color: 'var(--red)',
+              textDecoration: 'none',
+              letterSpacing: '0.04em',
+              marginTop: 8,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              fontWeight: 600,
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 10,
             }}
           >
             View on GitHub ↗
